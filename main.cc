@@ -1,3 +1,4 @@
+
 #include "moving_sphere.h"
 #include "rtweekend.h"
 
