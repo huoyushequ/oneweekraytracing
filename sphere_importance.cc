@@ -1,17 +1,19 @@
+
 #include "rtweekend.h"
 #include <iomanip>
 #include <iostream>
 #include <math.h>
 #include <stdlib.h>
 
-inline double pdf(double x) { return 3 * x * x / 8; }
+inline double pdf(const vec3 &p) { return 1 / (4 * pi); }
 
 int main() {
-  int N = 1;
+  int N = 1000000;
   auto sum = 0.0;
   for (int i = 0; i < N; i++) {
-    auto x = pow(random_double(0, 8), 1. / 3.);
-    sum += x * x / pdf(x);
+    vec3 d = random_unit_vector();
+    auto cosine_squared = d.z() * d.z();
+    sum += cosine_squared / pdf(d);
   }
 
   std::cout << std::fixed << std::setprecision(12);
